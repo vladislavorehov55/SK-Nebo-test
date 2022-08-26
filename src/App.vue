@@ -1,26 +1,35 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <MyInfo :infoText="infoText" v-if="infoText"
+          @defineInfoText="defineInfoText"/>
+  <MyMap @defineInfoText="defineInfoText"/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import MyMap from "@/components/MyMap";
+import MyInfo from "@/components/MyInfo";
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    MyInfo,
+    MyMap
+  },
+  data() {
+    return {
+      infoText: ''
+    }
+  },
+  methods: {
+    defineInfoText(text) {
+      this.infoText = text;
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 </style>
