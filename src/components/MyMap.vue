@@ -177,7 +177,7 @@ export default {
                 resolve(`Адрес метки: ${answerOne}`)
               })
         })
-        this.defineInfoText(infoText)
+        this.$store.commit('defineInfoText', infoText);
       })
 
       const createPlacemark = (coords) => {

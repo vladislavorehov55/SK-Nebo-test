@@ -1,7 +1,8 @@
 <template>
-  <MyInfo :infoText="infoText" v-if="infoText"
-          @defineInfoText="defineInfoText"/>
-  <MyMap @defineInfoText="defineInfoText"/>
+  <transition name="fade">
+    <MyInfo v-if="infoText" :infoText="infoText"/>
+  </transition>
+  <MyMap/>
 </template>
 
 <script>
@@ -13,14 +14,9 @@ export default {
     MyInfo,
     MyMap
   },
-  data() {
-    return {
-      infoText: ''
-    }
-  },
-  methods: {
-    defineInfoText(text) {
-      this.infoText = text;
+  computed: {
+    infoText() {
+      return this.$store.state.infoText
     }
   }
 }
@@ -31,5 +27,14 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.7s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
