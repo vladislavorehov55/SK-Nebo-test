@@ -145,6 +145,17 @@ export default {
           myMap.geoObjects.remove(myRoute);
         }
         const coords = e.get('coords');
+        if (JSON.parse(localStorage.getItem('saved coords'))) {
+          console.log('a')
+          const res = JSON.parse(localStorage.getItem('saved coords'));
+          res.push(coords);
+          localStorage.setItem('saved coords', JSON.stringify(res));
+        }
+        else {
+          const res = [];
+          res.push(coords);
+          localStorage.setItem('saved coords', JSON.stringify(res));
+        }
         if (myPlacemark) {
           myPlacemark.geometry.setCoordinates(coords);
         } else {
